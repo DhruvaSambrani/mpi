@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+
+echo Deleting phi_corr_errors
+rm phi_corr_errors
+rm phi_corr_errors.c
+echo Done deleting phi_corr_errors
+
+
+echo Deleting av_error files
+rm phi_corr_av_err-$alpha.txt
+echo Done deleting av_error files
+
+echo Creating phi_corr_errors.c file
+sed 's/phi_corr_av_err.txt/phi_corr_av_err-'$alpha'.txt/g' pre-phi_corr_errors.c > phi_corr_errors.c
+echo Done creating phi_corr_errors.c file
+
+echo Compiling phi_corr_errors...
+cc -o phi_corr_errors phi_corr_errors.c cmdline.c -lm
+echo Running code...
+
+	##################################### REAL PART ################################################
+
+	NLAT_START=0
+	NLAT_END=16
+	NLAT_INTERVAL=1
+
+	for nlat in $(seq $NLAT_START $NLAT_INTERVAL $NLAT_END);
+	do
+        folder="data_$alpha"          
+       ./phi_corr_errors -c1 -s00 -m$nlat corr_bos$nlat.txt
+	done
+
+
+
+
+echo Done.

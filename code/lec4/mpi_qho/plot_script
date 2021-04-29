@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+
+
+# echo ==== Plot data
+
+
+cd data
+
+ gnuplot action.p
+ bash B_av_error_script
+
+	bash corr_bos_script
+	gnuplot bos-corr.p
+#  # gnuplot mB.p
+#  # gnuplot drift.p
+#  # gnuplot bn.p
+# # gnuplot phi_all.p
+# # # gnuplot noise.p
+# # bash B_av_error_script
+cd ..
+
+echo ==== Done

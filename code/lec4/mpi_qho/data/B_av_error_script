@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+echo Deleting B_errors
+
+rm B_errors
+
+echo Deleting av_error files
+
+rm B_av_err.txt
+
+echo Compiling B_errors...
+
+cc -o B_errors B_errors.c cmdline.c -lm
+
+echo Running code...
+
+
+    ##################################### REAL PART ################################################
+
+
+    # ALPHA 0.05 
+
+        item=1 
+        folder="data_$item"         
+       ./B_errors -c1 -s1000 -m$item s_bos.dat   
+        item=2 
+       ./B_errors -c1 -s0 -m$item noise.txt
+		item=3
+		./B_errors -c2 -s0 -m$item noise.txt
+echo Done.

@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+echo ==== Deleting code...   
+cd data
+
+rm *.txt
+
+cd ..
+
+
+echo ==== Compiling code...
+
+mpic++ -o code qho_mpi.cpp
+
+echo ==== Running code...
+
+mpirun -n 4 ./code
+
+echo ==== Code Completed
+
+# echo ==== Plot data
+
+
+# cd data
+
+#  gnuplot action.p
+#  bash B_av_error_script
+
+# 	bash corr_bos_script
+# 	gnuplot bos-corr.p
+# #  # gnuplot mB.p
+# #  # gnuplot drift.p
+# #  # gnuplot bn.p
+# # # gnuplot phi_all.p
+# # # # gnuplot noise.p
+# # # bash B_av_error_script
+# cd ..
+
+echo ==== Done
